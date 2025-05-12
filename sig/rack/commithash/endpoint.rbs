@@ -1,0 +1,27 @@
+module Rack
+  module Commithash
+    class Endpoint
+      class Error < ::StandardError; end
+
+      DEFAULT_REQUEST_PATH: String
+      DEFAULT_ENV_VAR: String
+
+      def initialize: (
+        app: untyped,
+        env_var: String named 'env_var' = DEFAULT_ENV_VAR,
+        path: String named 'path' = DEFAULT_REQUEST_PATH,
+        json_format: bool named 'json_format' = true
+      ) -> void
+
+      def call: (env: Hash[String, untyped]) -> [String, Hash[String, String], Array[String]]
+
+      private
+      def build_response: (commit_hash: String, json_format: bool) -> [String, String, String]
+    end
+
+    module Endpoint
+      VERSION: String
+      # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+    end
+  end
+end
